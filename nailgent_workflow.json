@@ -1,0 +1,2307 @@
+{
+  "name": "nailgent",
+  "nodes": [
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.kakao_user_id }}",
+        "contextWindowLength": 3
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        208,
+        256
+      ],
+      "id": "6a553a53-7436-469b-b544-c7c85d1a58a2",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ (() => { const p = JSON.parse($json.output); return p.output ? p.output.intent : p.intent; })() }}",
+                    "rightValue": "greeting",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "e8c0782d-9850-48a9-a5fd-b5385a1571e6"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "greeting"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "3d55b6d8-e9a0-4507-86c1-a5063223c05f",
+                    "leftValue": "={{ (() => { const p = JSON.parse($json.output); return p.output ? p.output.intent : p.intent; })() }}",
+                    "rightValue": "inquiry",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "inquiry"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "6e5e67b0-d7fb-4c74-9a1a-518809961dd3",
+                    "leftValue": "={{ (() => { const p = JSON.parse($json.output); return p.output ? p.output.intent : p.intent; })() }}",
+                    "rightValue": "booking",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "booking"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "1b84592f-6145-4852-906f-2112467fd610",
+                    "leftValue": "={{ (() => { const p = JSON.parse($json.output); return p.output ? p.output.intent : p.intent; })() }}",
+                    "rightValue": "change",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "change"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "94fb302c-022f-455f-94a3-c58eb68c7199",
+                    "leftValue": "={{ (() => { const p = JSON.parse($json.output); return p.output ? p.output.intent : p.intent; })() }}",
+                    "rightValue": "cancel",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "cancel"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "dceb41a9-96bf-4cee-b02d-b63b942157b4",
+                    "leftValue": "={{ (() => { const p = JSON.parse($json.output); return p.output ? p.output.intent : p.intent; })() }}",
+                    "rightValue": "payment",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "payment"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "cf60a029-7196-4593-b9f6-05cfe8ee2b0b",
+                    "leftValue": "={{ (() => { const p = JSON.parse($json.output); return p.output ? p.output.intent : p.intent; })() }}",
+                    "rightValue": "unknown",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        496,
+        0
+      ],
+      "id": "f1309bf0-0c69-484f-8db1-20820421e1e6",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"version\": \"2.0\",\n  \"template\": {\n    \"outputs\": [\n      {\n        \"simpleText\": {\n          \"text\": \"안녕하세요! 숙명네일샵입니다^^\\n무엇을 도와드릴까요?\\n\\n예약문의를 원하시면 '예약 문의'\\n예약변경을 원하시면 '예약 변경'\\n예약취소를 원하시면 '예약 취소'\\n를 입력해주세요!\"\n        }\n      }\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        880,
+        -1088
+      ],
+      "id": "79dc2a40-7a04-49f9-b7eb-bf25550075ff",
+      "name": "WELCOME_MESSAGE"
+    },
+    {
+      "parameters": {
+        "url": "http://43.203.242.117:8080/api/v1/shopinfo",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        880,
+        -880
+      ],
+      "id": "a8e08fcc-718c-4bc4-a2bd-7dc99e41c18b",
+      "name": "Get_ShopInfo"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Prepare_Input').item.json.utterance }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=당신은 숙명 네일샵의 문의 응대 AI입니다.\n\n## 제공된 샵 정보\n- 영업시간: {{ $('Get_ShopInfo').item.json.data.business_hour }}\n- 휴무일: 매주 월요일\n- 예약금: {{ $('Get_ShopInfo').item.json.data.deposit_amount }}원\n- 계좌번호: {{ $('Get_ShopInfo').item.json.data.account_number }}\n- 정책: {{ $('Get_ShopInfo').item.json.data.policy_text }}\n\n## 이벤트/메뉴 정보\n{{ $('Extract_Text').item.json.parsed_text }}\n\n## 출력 형식 (반드시 JSON만 출력, 다른 텍스트 금지)\n{\"can_answer\": true 또는 false, \"text\": \"답변 내용\"}\n\n## 절대 규칙\n1. 위에 제공된 정보에 명시된 내용만 답변하세요.\n2. 제공된 정보에 없는 내용은 can_answer: false, text: \"\"로 설정하세요.\n3. 고객이 질문한 것만 답변하세요. 묻지 않은 정보는 절대 추가하지 마세요.\n4. 답변은 1-2문장으로 간결하게 작성하세요.\n5. 일반 상식, 추측, 경험으로 답변하는 것은 엄격히 금지됩니다.\n6. 확실하지 않으면 can_answer: false로 설정하세요."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        1632,
+        -880
+      ],
+      "id": "fd1a2c1f-372e-43aa-804b-def51494f5fa",
+      "name": "Inquiry_LLM"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "solar-pro3",
+          "mode": "list",
+          "cachedResultName": "solar-pro3"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1600,
+        -704
+      ],
+      "id": "abfbbdf1-54b7-41c2-9349-6518156f8c20",
+      "name": "solar-pro",
+      "credentials": {
+        "openAiApi": {
+          "id": "SYIyKvhSyBDm7zTR",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "264cd467-f939-479b-8d7a-5fdcab11a3ef",
+              "leftValue": "={{ JSON.parse($json.text).can_answer }}",
+              "rightValue": "false",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1920,
+        -880
+      ],
+      "id": "02f73e43-2a80-4f12-b5c3-4f59c9eb5ed4",
+      "name": "Can_Answer_Check"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"version\": \"2.0\",\n  \"template\": {\n    \"outputs\": [\n      {\n        \"simpleText\": {\n          \"text\": \"사장님께 전달했습니다. 곧 답변드릴게요 😊\"\n        }\n      }\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2112,
+        -896
+      ],
+      "id": "d0fe629c-9fe4-403a-a86d-6c554038f322",
+      "name": "사장님_알림_응답"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2288,
+        -736
+      ],
+      "id": "88429f4a-0031-46a2-b850-6517b89354bc",
+      "name": "Inquiry_응답"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "b780dadc-be7d-472b-96be-d1d8a4ba83a1",
+              "leftValue": "={{ $('Parse_Slots').item.json.missing_fields.length }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1088,
+        -544
+      ],
+      "id": "d6f5be73-e657-42ea-9a8c-7c86dba7a9e9",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"version\": \"2.0\",\n  \"template\": {\n    \"outputs\": [\n      {\n        \"simpleText\": {\n          \"text\": \"안녕하세요 고객님~ 예약 문의 주셔서 감사합니다:)\\n아래 예약 형식에 맞게 채워서 보내주시면 확인 후 예약 도와드리겠습니다!! (* 표시는 필수사항)\\n\\n- *성함:\\n- *전화번호 (010-0000-0000):\\n- *젤제거 유무(O/X):\\n- *예약 희망 날짜 (형식: 2026-04-12):\\n- *예약 희망 시간 (형식: 18:00):\\n- *원하시는 시술 종류(손톱 케어/기본네일/젤네일/페디큐어 등):\\n- *과거 방문경험(O/X):\\n- 알게된 경로:\\n- 기타 요청 사항:\\n\\n<숙명네일샵 정책 안내>\\n• 영업 시간: 10:00-22:00 (매주 월요일 정기휴무)\\n• 각 시술별 소요 시간:\\n  ◦ 기본 케어(30분) / 기본 네일(30분) / 젤 네일(1시간) / 기존 젤네일 제거 (30분)\\n• 예약 선입금: 2만원\\n  ◦ 예약 등록 후 30분 안에 미결제 시 자동 취소됩니다.\\n• 예약 변경: 예약은 하루 전까지만 변경 가능하며, 당일 변경은 불가능합니다.\\n• 예약 취소: 이틀 전까지는 예약금 전체 환불 / 하루 전부터는 환불 불가합니다.\"\n        }\n      }\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1312,
+        -560
+      ],
+      "id": "54637af2-af96-4e1f-bb9e-bda2cc42beec",
+      "name": "BOOKING_FORM_GUIDE"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "6d8e5f85-4592-48b5-8c44-dfeab8f42a16",
+              "leftValue": "=\t{{ $('Parse_Slots').item.json.missing_fields.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1280,
+        -384
+      ],
+      "id": "804379aa-da9c-43fe-96fb-d262069b693d",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $('Parse_Slots').item.json;\nconst question = data.followup_question || \"예약에 필요한 정보를 알려주세요.\";\n\nreturn [{json: {\n  version: \"2.0\",\n  template: {\n    outputs: [{ simpleText: { text: question } }]\n  }\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        -400
+      ],
+      "id": "ac7f22cb-d33e-4690-919b-9a614d889582",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "url": "http://43.203.242.117:8080/api/v1/shopinfo",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1488,
+        -240
+      ],
+      "id": "fa8f119b-bd54-476a-a00b-69b59600b1e6",
+      "name": "Get_ShopInfo_Booking"
+    },
+    {
+      "parameters": {
+        "url": "http://43.203.242.117:8080/api/v1/bookings/schedule",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "date",
+              "value": "={{ $('Parse_Slots').item.json.reserve_date ?? $now.toFormat('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1488,
+        -48
+      ],
+      "id": "49cd0123-427b-474e-976c-fe2a316ca4f1",
+      "name": "Get_Schedule"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "74f202db-9ebc-46be-b9c1-eafaa72554d5",
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1904,
+        -48
+      ],
+      "id": "71bac892-0470-47b1-8553-97fab0613273",
+      "name": "Booking_Valid_Check"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://43.203.242.117:8080/api/v1/bookings",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"name\": \"{{ $json.slots.name }}\",\n  \"service\": \"{{ $json.slots.service_name }}\",\n  \"designer\": null,\n  \"kakao_user_id\": \"{{ $('Kakao_Webhook').item.json.body.userRequest.user.id }}\",\n  \"plusfriend_user_key\": \"{{ $('Kakao_Webhook').item.json.body.userRequest.user.properties.plusfriendUserKey }}\",\n  \"phone_num\": \"{{ $json.slots.phone_num }}\",\n  \"reserve_date\": \"{{ $json.slots.reserve_date }}\",\n  \"reserve_time\": \"{{ $json.slots.reserve_time }}-{{ $json.slots.reserve_time_end }}\",\n  \"estimated_duration_min\": {{ $json.duration }},\n  \"off_removal\": {{ $json.slots.off_removal }},\n  \"deposit_amount\": {{ $json.deposit_amount }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2112,
+        -144
+      ],
+      "id": "2b743f07-3f21-4912-b42c-c7607a35996d",
+      "name": "Create_Booking"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $json;\nconst reason = data.reason || \"예약이 불가합니다.\";\nconst recommendations = data.recommendations || [];\n\nlet recText = recommendations.length > 0\n  ? \"\\n\\n대신 예약 가능한 시간대:\\n\" + recommendations.join(\" / \")\n  : \"\\n\\n다른 날짜나 시간을 알려주시면 다시 확인해드릴게요.\";\n\nconst text = \"죄송합니다. \" + reason + recText;\n\nreturn [{json: {\n  version: \"2.0\",\n  template: {\n    outputs: [{ simpleText: { text: text } }]\n  }\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2112,
+        48
+      ],
+      "id": "ba2dccad-cfd3-4034-917e-76d881b82cfa",
+      "name": "Booking_Fail_Response"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3232,
+        -48
+      ],
+      "id": "2c320ee7-2fec-4021-91cb-d50a0dc9d703",
+      "name": "Respond to Webhook2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse_Slots에서 슬롯 직접 가져오기\nconst slots = $('Parse_Slots').item.json;\n\n// Get_ShopInfo_Booking에서 shopInfo 가져오기\nconst shopInfo = $('Get_ShopInfo_Booking').item.json.data || $('Get_ShopInfo_Booking').item.json;\nconst depositAmount = shopInfo.deposit_amount || 0;\n\n// service_durations 파싱: \"젤네일 60분 / 기본네일 45분 / 페디큐어 60분\"\nconst FALLBACK_DURATIONS = {\"GEL_BASIC\": 30, \"GEL_NAIL\": 60, \"PEDICURE\": 60};\nconst NAME_TO_CODE = {\"젤네일\": \"GEL_NAIL\", \"기본네일\": \"GEL_BASIC\", \"페디큐어\": \"PEDICURE\"};\nlet serviceDurations = {...FALLBACK_DURATIONS};\ntry {\n  if (shopInfo.service_durations) {\n    const parsed = {};\n    shopInfo.service_durations.split(' / ').forEach(part => {\n      const [name, minStr] = part.trim().split(' ');\n      const code = NAME_TO_CODE[name];\n      if (code) parsed[code] = parseInt(minStr);\n    });\n    if (Object.keys(parsed).length > 0) serviceDurations = parsed;\n  }\n} catch(e) {}\n\n// Get_Schedule에서 스케줄 데이터 가져오기\nconst scheduleData = $('Get_Schedule').item.json.data || $('Get_Schedule').item.json;\nconst businessHourStr = scheduleData.business_hour;\nconst bookedSchedules = scheduleData.booked_schedules || [];\n\n// end time 계산\nconst duration = (serviceDurations[slots.service_code] || 60) + (slots.off_removal ? 30 : 0);\n\nconst [startH, startM] = slots.reserve_time.split(':').map(Number);\nconst endTotalMin = startH * 60 + startM + duration;\nconst endH = Math.floor(endTotalMin / 60);\nconst endM = endTotalMin % 60;\nconst reserve_time_end = String(endH).padStart(2, '0') + ':' + String(endM).padStart(2, '0');\n\nconst serviceNames = {\"GEL_NAIL\": \"젤네일\", \"GEL_BASIC\": \"기본네일\", \"PEDICURE\": \"페디큐어\"};\n\nconst slotsObj = {\n  name: slots.name,\n  phone_num: slots.phone_num,\n  reserve_date: slots.reserve_date,\n  reserve_time: slots.reserve_time,\n  reserve_time_end: reserve_time_end,\n  service_code: slots.service_code,\n  service_name: serviceNames[slots.service_code] || slots.service_code,\n  off_removal: slots.off_removal,\n  past_visit: slots.past_visit\n};\n\n// 요일 체크 (월요일 = 1)\nconst date = new Date(slots.reserve_date);\nconst dayOfWeek = date.getDay();\nif (dayOfWeek === 1) {\n  return [{json: {valid: false, reason: \"정기 휴무일(월요일)입니다.\", recommendations: [], duration: duration, slots: slotsObj}}];\n}\n\n// 영업시간 파싱\nconst isWeekend = dayOfWeek === 0 || dayOfWeek === 6;\nconst lines = businessHourStr.split(/\\\\n|\\n/);\nlet startTime = \"10:00\", endTime = \"22:00\";\ntry {\n  const line = lines.find(l => l.includes(isWeekend ? '주말' : '평일'));\n  const range = line.split(': ')[1];\n  [startTime, endTime] = range.split('-');\n} catch(e) {}\n\nconst toMin = t => {\n  const [h, m] = t.trim().split(':').map(Number);\n  return h * 60 + m;\n};\n\nconst openMin = toMin(startTime);\nconst closeMin = toMin(endTime);\nconst reqStart = toMin(slots.reserve_time);\nconst reqEnd = reqStart + duration;\n\n// 영업시간 체크\nif (reqStart < openMin || reqEnd > closeMin) {\n  return [{json: {\n    valid: false,\n    reason: \"영업시간(\" + startTime + \"~\" + endTime + \") 외의 시간입니다.\",\n    recommendations: [],\n    duration: duration,\n    slots: slotsObj\n  }}];\n}\n\n// 예약 충돌 체크\nlet hasConflict = false;\nfor (const slot of bookedSchedules) {\n  const [slotStart, slotEnd] = slot.reserve_time.split('-');\n  const s = toMin(slotStart);\n  const e = toMin(slotEnd);\n  if (reqStart < e && s < reqEnd) {\n    hasConflict = true;\n    break;\n  }\n}\n\n// 추천 시간대 계산 (충돌 여부와 관계없이 항상 실행)\nconst timelineSize = closeMin - openMin;\nif (isNaN(timelineSize) || timelineSize <= 0) {\n  return [{json: {\n    valid: false,\n    reason: \"영업시간 확인 중 오류가 발생했습니다.\",\n    recommendations: [],\n    duration: duration,\n    slots: slotsObj\n  }}];\n}\n\nconst timeline = new Array(timelineSize).fill(0);\nfor (const slot of bookedSchedules) {\n  const [slotStart, slotEnd] = slot.reserve_time.split('-');\n  const s = toMin(slotStart) - openMin;\n  const e = toMin(slotEnd) - openMin;\n  for (let i = Math.max(0, s); i < Math.min(timeline.length, e); i++) {\n    timeline[i] = 1;\n  }\n}\n\nconst recommendations = [];\nlet count = 0;\nfor (let i = 0; i < timeline.length; i++) {\n  if (timeline[i] === 0) {\n    count++;\n    if (count >= duration && (i - duration + 1 + openMin) % 30 === 0) {\n      const sMin = i - duration + 1 + openMin;\n      recommendations.push(\n        String(Math.floor(sMin / 60)).padStart(2, '0') + ':' + String(sMin % 60).padStart(2, '0')\n      );\n    }\n  } else {\n    count = 0;\n  }\n}\n\n// 충돌 시 valid: false + recommendations 포함 반환\nif (hasConflict) {\n  return [{json: {\n    valid: false,\n    reason: \"해당 시간에 이미 예약이 있습니다.\",\n    recommendations: recommendations.slice(0, 3),\n    duration: duration,\n    slots: slotsObj\n  }}];\n}\n\nreturn [{json: {\n  valid: true,\n  reason: \"예약 가능합니다.\",\n  duration: duration,\n  deposit_amount: depositAmount,\n  slots: slotsObj,\n  recommendations: recommendations.slice(0, 3)\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1696,
+        -48
+      ],
+      "id": "c16b7e6d-8685-4f63-af18-4ef8b3a3858c",
+      "name": "PolicyEngine Code"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $('Intake Agent').item.json.output;\nlet parsed;\n\ntry {\n  const p = typeof raw === 'string' ? JSON.parse(raw) : raw;\n  parsed = p.output || p;\n} catch(e) {\n  parsed = { intent: 'unknown', slots: {}, missing_fields: [], followup_question: null, response: '' };\n}\n\nconst slots = parsed.slots || {};\n\n// Prepare_Input에서 기존 고객 정보 가져오기\nconst prepareData = $('Prepare_Input').first().json;\n\n// 날짜 형식 검증 (YYYY-MM-DD만 허용)\nconst isValidDate = (d) => d && /^\\d{4}-\\d{2}-\\d{2}$/.test(d);\n// 시간 형식 검증 (HH:MM만 허용)\nconst isValidTime = (t) => t && /^\\d{2}:\\d{2}$/.test(t);\n\n// 기존 고객이면 DB 값으로 보완\nconst name = slots.name || prepareData.name || null;\nconst phone_num = slots.phone_num || prepareData.phone_num || null;\nconst reserve_date = isValidDate(slots.reserve_date) ? slots.reserve_date : null;\nconst reserve_time = isValidTime(slots.reserve_time) ? slots.reserve_time : null;\nconst service_code = slots.service_code || null;\nconst off_removal = slots.off_removal !== undefined && slots.off_removal !== null ? slots.off_removal : null;\nconst past_visit = slots.past_visit !== undefined && slots.past_visit !== null ? slots.past_visit : null;\n\n// booking일 때 missing_fields 직접 재계산\nlet missing_fields = [];\nif (parsed.intent === 'booking') {\n  if (!name) missing_fields.push('name');\n  if (!phone_num) missing_fields.push('phone_num');\n  if (off_removal === null) missing_fields.push('off_removal');\n  if (!reserve_date) missing_fields.push('reserve_date');\n  if (!reserve_time) missing_fields.push('reserve_time');\n  if (!service_code) missing_fields.push('service_code');\n  if (past_visit === null) missing_fields.push('past_visit');\n} else {\n  missing_fields = parsed.missing_fields || [];\n}\n\n// 누락 필드별 라벨 및 질문\nconst fieldLabels = {\n  'name': '성함',\n  'phone_num': '전화번호 (010-XXXX-XXXX)',\n  'off_removal': '젤 제거 여부 (O/X)',\n  'reserve_date': '예약 희망 날짜 (YYYY-MM-DD)',\n  'reserve_time': '예약 희망 시간 (HH:MM)',\n  'service_code': '시술 종류 (젤네일/기본네일/페디큐어)',\n  'past_visit': '과거 방문 경험 (O/X)'\n};\n\nconst specificQuestions = {\n  'name': '성함을 알려주세요.',\n  'phone_num': '전화번호를 알려주세요. (예: 010-1234-5678)',\n  'off_removal': '젤 제거가 필요하신가요? (O/X)',\n  'reserve_date': '예약 희망 날짜를 알려주세요. (예: 2026-05-23)',\n  'reserve_time': '예약 희망 시간을 알려주세요. (예: 14:00)',\n  'service_code': '시술 종류를 알려주세요. (젤네일/기본네일/페디큐어)',\n  'past_visit': '이전에 방문하신 적이 있으신가요? (O/X)'\n};\n\nlet followup_question = null;\nif (parsed.intent === 'booking' && missing_fields.length > 0) {\n  if (missing_fields.length === 1) {\n    const field = missing_fields[0];\n    followup_question = specificQuestions[field] || `${fieldLabels[field]}을 알려주세요.`;\n  } else {\n    const missingLabels = missing_fields.map(f => fieldLabels[f] || f);\n    followup_question = `아래 정보를 알려주세요:\\n${missingLabels.map(l => `- ${l}`).join('\\n')}`;\n  }\n}\n\nreturn [{json: {\n  intent: parsed.intent,\n  name,\n  phone_num,\n  reserve_date,\n  reserve_time,\n  service_code,\n  off_removal,\n  past_visit,\n  missing_fields,\n  followup_question,\n  response: parsed.response || ''\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        864,
+        -544
+      ],
+      "id": "b19e98fd-a1fc-4b0a-98be-4205e2911972",
+      "name": "Parse_Slots"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://43.203.242.117:8080/api/v1/kakao-customers",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "kakao_user_id",
+              "value": "={{ $json.body.userRequest.user.id }}"
+            },
+            {
+              "name": "plusfriend_user_key",
+              "value": "={{ $json.body.userRequest.user.properties.plusfriendUserKey }}"
+            },
+            {
+              "name": "is_friend",
+              "value": "={{ $json.body.userRequest.user.properties.isFriend }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -208,
+        64
+      ],
+      "id": "00f255c8-5cb0-4857-9a33-553afeca6e91",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const kakaoData = $('Kakao_Webhook').item.json.body;\nconst lookupResult = $('HTTP Request').item.json;\n\nconst kakaoUserId = kakaoData.userRequest.user.id;\nconst plusfriendUserKey = kakaoData.userRequest.user.properties.plusfriendUserKey; // 추가\nconst utterance = kakaoData.userRequest.utterance;\nconst today = new Date().toISOString().split('T')[0];\n\nconst isExisting = lookupResult.data?.is_existing || false;\nconst name = isExisting ? lookupResult.data?.name : null;\nconst phoneNum = isExisting ? lookupResult.data?.phone_num : null;\n\nreturn [{json: {\n  kakao_user_id: kakaoUserId,\n  plusfriend_user_key: plusfriendUserKey,  // 추가\n  utterance: utterance,\n  today: today,\n  name: name,\n  phone_num: phoneNum,\n  is_existing: isExisting\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        64
+      ],
+      "id": "abc18bf0-ffd1-44c5-bd13-0d9e6ccb8b0c",
+      "name": "Prepare_Input"
+    },
+    {
+      "parameters": {
+        "url": "http://43.203.242.117:8080/api/v1/bookings",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "page",
+              "value": "1"
+            },
+            {
+              "name": "size",
+              "value": "100"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        768,
+        192
+      ],
+      "id": "9fd3df86-695c-49d2-a1f8-37fc66bc1c1b",
+      "name": "Get_Bookings_CC"
+    },
+    {
+      "parameters": {
+        "jsCode": "const bookingsData = $input.item.json.data || $input.item.json;\nconst bookings = bookingsData.bookings || [];\n\n// Intake Agent에서 name 추출\nlet userName = null;\ntry {\n  const intakeRaw = $('Intake Agent').first().json.output;\n  const intake = JSON.parse(intakeRaw);\n  userName = intake.slots?.name || null;\n} catch(e) {}\n\n// 이름 없으면 Prepare_Input(DB)에서 보완\nif (!userName) {\n  userName = $('Prepare_Input').first().json.name || null;\n}\n\nconst today = new Date().toISOString().split('T')[0];\n\nlet match = null;\nif (userName) {\n  const candidates = bookings.filter(b =>\n    b.name === userName &&\n    b.reserve_date >= today &&\n    b.visit_status !== 'CANCELLED'\n  );\n  match = candidates.sort((a, b) => a.reserve_date.localeCompare(b.reserve_date))[0] || null;\n}\n\nif (match) {\n  return [{json: {\n    found: true,\n    reservation_id: match.id,\n    customer_name: match.name,\n    service: match.service,\n    reserve_date: match.reserve_date,\n    reserve_time: match.reserve_time,\n    off_removal: match.off_removal,\n    visit_status: match.visit_status\n  }}];\n} else {\n  return [{json: { found: false, customer_name: userName }}];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        976,
+        192
+      ],
+      "id": "5b91900f-21fd-4bf6-9c81-f0d678065778",
+      "name": "Find_My_Reservation"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "02473bee-e536-4458-9dd7-d23329d280f3",
+              "leftValue": "={{ $json.found }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1184,
+        192
+      ],
+      "id": "4c2063e5-680a-4067-becb-de65a577875c",
+      "name": "If_Found"
+    },
+    {
+      "parameters": {
+        "jsCode": "let intent = 'cancel';\nlet name = null;\ntry {\n  const intakeRaw = $('Intake Agent').first().json.output;\n  const intake = JSON.parse(intakeRaw);\n  intent = intake.intent || 'cancel';\n  name = intake.slots?.name || null;\n} catch(e) {}\n\nconst intentLabel = intent === 'cancel' ? '취소' : '변경';\n\nlet text;\nif (!name) {\n  text = `예약 ${intentLabel}을 도와드리겠습니다. 예약하실 때 사용하신 성함을 알려주세요.`;\n} else {\n  text = `'${name}'님 명의의 예약을 찾을 수 없습니다. 성함을 다시 확인해 주세요.`;\n}\n\nreturn [{json: {\n  version: \"2.0\",\n  template: {\n    outputs: [{\n      simpleText: { text }\n    }]\n  }\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1552,
+        528
+      ],
+      "id": "8fb3e997-024b-4cca-922a-addbb45d5da9",
+      "name": "AskInfo_CC_Response"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ JSON.parse($('Intake Agent').item.json.output).intent }}",
+                    "rightValue": "change",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "17bd9ad1-7b6c-4220-b980-96b7298e6a88"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "change"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "9af16ff8-bbaf-4b9e-a58b-b4908c234425",
+                    "leftValue": "={{ JSON.parse($('Intake Agent').item.json.output).intent }}",
+                    "rightValue": "cancel",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "cancel"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1360,
+        208
+      ],
+      "id": "c409e784-5281-4675-b32f-09605264a4f9",
+      "name": "Switch_CC"
+    },
+    {
+      "parameters": {
+        "jsCode": "const existing = $('Find_My_Reservation').first().json;\nconst slots = $input.item.json;\n\nlet intentSlots = {};\ntry {\n  const intakeRaw = $('Intake Agent').first().json.output;\n  intentSlots = JSON.parse(intakeRaw).slots || {};\n} catch(e) {}\n\nconst shopInfo = $('Get_ShopInfo_CC').first().json.data || $('Get_ShopInfo_CC').first().json;\nconst depositAmount = shopInfo.deposit_amount || 0;\n\nconst FALLBACK_DURATIONS = {\"GEL_NAIL\": 60, \"GEL_BASIC\": 45, \"PEDICURE\": 60};\nconst NAME_TO_CODE = {\"젤네일\": \"GEL_NAIL\", \"기본네일\": \"GEL_BASIC\", \"페디큐어\": \"PEDICURE\"};\nlet serviceDurations = {...FALLBACK_DURATIONS};\ntry {\n  if (shopInfo.service_durations) {\n    const parsed = {};\n    shopInfo.service_durations.split(' / ').forEach(part => {\n      const [name, minStr] = part.trim().split(' ');\n      const code = NAME_TO_CODE[name];\n      if (code) parsed[code] = parseInt(minStr);\n    });\n    if (Object.keys(parsed).length > 0) serviceDurations = parsed;\n  }\n} catch(e) {}\n\nconst serviceNames = {\"GEL_NAIL\": \"젤네일\", \"GEL_BASIC\": \"기본네일\", \"PEDICURE\": \"페디큐어\"};\n\nconst service_code = intentSlots.service_code || null;\nconst service = service_code ? (serviceNames[service_code] || existing.service) : existing.service;\nconst off_removal = (intentSlots.off_removal !== null && intentSlots.off_removal !== undefined) ? intentSlots.off_removal : existing.off_removal;\nconst reserve_date = intentSlots.reserve_date || existing.reserve_date;\n\nlet reserve_time, estimated_duration_min;\n\nif (intentSlots.reserve_time) {\n  const duration = (serviceDurations[service_code] || 60) + (off_removal ? 30 : 0);\n  const [h, m] = intentSlots.reserve_time.split(':').map(Number);\n  const endMin = h * 60 + m + duration;\n  const endTime = String(Math.floor(endMin / 60)).padStart(2, '0') + ':' + String(endMin % 60).padStart(2, '0');\n  reserve_time = intentSlots.reserve_time + '-' + endTime;\n  estimated_duration_min = duration;\n} else {\n  reserve_time = existing.reserve_time;\n  const [startStr, endStr] = existing.reserve_time.split('-');\n  const [sh, sm] = startStr.split(':').map(Number);\n  const [eh, em] = endStr.split(':').map(Number);\n  estimated_duration_min = (eh * 60 + em) - (sh * 60 + sm);\n}\n\nreturn [{json: {\n  reservation_id: existing.reservation_id,\n  body: {\n    service: service,\n    designer: \"사장님\",\n    reserve_date: reserve_date,\n    reserve_time: reserve_time,\n    estimated_duration_min: estimated_duration_min,\n    off_removal: off_removal,\n    deposit_amount: depositAmount,\n    visit_status: \"CONFIRMED\"\n  }\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1776,
+        192
+      ],
+      "id": "79f4d983-9191-4ea2-ba25-e4d236ee2322",
+      "name": "Build_Patch"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=http://43.203.242.117:8080/api/v1/bookings/{{ $json.reservation_id }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.body) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1968,
+        192
+      ],
+      "id": "849c8bcd-9b5e-4ad3-b2d2-251baf0e7ff8",
+      "name": "Patch_Booking"
+    },
+    {
+      "parameters": {
+        "url": "http://43.203.242.117:8080/api/v1/shopinfo",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1584,
+        192
+      ],
+      "id": "3d87e077-f732-4867-85a2-bcaeee778fee",
+      "name": "Get_ShopInfo_CC"
+    },
+    {
+      "parameters": {
+        "jsCode": "const patch = $('Build_Patch').first().json;\nconst startTime = patch.body.reserve_time.split('-')[0];\n\nreturn [{json: {\n  version: \"2.0\",\n  template: {\n    outputs: [{\n      simpleText: {\n        text: `예약이 변경되었습니다! ✅\\n\\n📅 날짜: ${patch.body.reserve_date}\\n⏰ 시간: ${startTime}\\n💅 시술: ${patch.body.service}`\n      }\n    }]\n  }\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2176,
+        192
+      ],
+      "id": "b3cbf85a-b6cc-4861-bb23-807c323e710d",
+      "name": "Change_Success_Response"
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=http://43.203.242.117:8080/api/v1/bookings/{{ $('Find_My_Reservation').item.json.reservation_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1584,
+        384
+      ],
+      "id": "b8082f2e-0c1e-4943-ac5b-f8182bb705dd",
+      "name": "Delete_Booking"
+    },
+    {
+      "parameters": {
+        "jsCode": "const existing = $('Find_My_Reservation').first().json;\nconst startTime = existing.reserve_time.split('-')[0];\n\nreturn [{json: {\n  version: \"2.0\",\n  template: {\n    outputs: [{\n      simpleText: {\n        text: `${existing.customer_name}님의 예약이 취소되었습니다. 😢\\n\\n취소된 예약:\\n📅 ${existing.reserve_date} ${startTime}\\n💅 ${existing.service}\\n\\n또 방문해 주세요!`\n      }\n    }]\n  }\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1792,
+        384
+      ],
+      "id": "b8c23475-9896-40df-a8ed-1cd3e4af750a",
+      "name": "Cancel_Success_Response"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "toss-payment",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        1632,
+        864
+      ],
+      "id": "30b31012-e362-4110-b361-6b0248125e16",
+      "name": "Toss Webhook",
+      "webhookId": "7ff8da3f-0519-4322-8e54-eb9c4e046761"
+    },
+    {
+      "parameters": {
+        "jsCode": "const authHeader = $input.item.json.headers?.authorization || \"\";\nconst body = $input.item.json.body;\n\n// 임시: 항상 통과 (디버깅용)\nreturn [{json: {\n  isValid: true,\n  authHeader: authHeader,  // 실제 값 확인용\n  body: body\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1840,
+        864
+      ],
+      "id": "9375a2a2-9c57-4690-bd90-e3f940937ca3",
+      "name": "Verify_Signature"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "2d585f61-c16d-42f8-b3b6-2d9093f0a455",
+              "leftValue": "={{ $json.isValid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2048,
+        864
+      ],
+      "id": "1d969124-6fcd-4042-9ffa-f15198da51b0",
+      "name": "If_Valid"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"message\": \"Unauthorized\"}",
+        "options": {
+          "responseCode": 401
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2256,
+        960
+      ],
+      "id": "9e39c3f4-2f60-4587-8c73-a5acdc171ff1",
+      "name": "Reject_Response"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.tosspayments.com/v1/payments/{{ $('Verify_Signature').item.json.body.data.paymentKey }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2256,
+        768
+      ],
+      "id": "353439c5-93a2-4bf3-8ca9-7000eeb1c040",
+      "name": "Get_Payment",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "DhTV0l4ArOwUyjZh",
+          "name": "Unnamed credential"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const webhookBody = $('Verify_Signature').item.json.body;\n\n// Get_Payment 대신 webhook body에서 직접 읽기\nconst status = webhookBody.data?.status;\nconst paidAmount = webhookBody.data?.totalAmount;\nconst paymentKey = webhookBody.data?.paymentKey;\nconst orderId = webhookBody.data?.orderId;\n\nconst isSuccess = status === \"DONE\";\n\n// 임시 하드코딩 - 테스트용\nreturn [{json: {\n  isSuccess: true,\n  status: \"DONE\",\n  paymentKey: \"test_payment_key_hardcoded_3\",  // ← 다른 값으로 변경\n  orderId: \"booking_2\",\n  paidAmount: 5000\n}}];\n\n\n//실제 코드\n// const webhookBody = $('Verify_Signature').item.json.body;\n\n// const status = webhookBody.data?.status;\n// const paidAmount = webhookBody.data?.totalAmount;\n// const paymentKey = webhookBody.data?.paymentKey;\n// const orderId = webhookBody.data?.orderId;\n\n// const isSuccess = status === \"DONE\";\n\n// return [{json: { isSuccess, status, paymentKey, orderId, paidAmount }}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2464,
+        768
+      ],
+      "id": "8c0955d9-d4ce-4753-a26e-57933e135fb4",
+      "name": "Check_Payment"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"version\": \"2.0\",\n  \"template\": {\n    \"outputs\": [\n      {\n        \"simpleText\": {\n          \"text\": \"결제가 완료되지 않아 예약이 자동 취소되었습니다.\\n다시 예약을 원하시면 말씀해 주세요 😊\"\n        }\n      }\n    ]\n  }\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3136,
+        928
+      ],
+      "id": "748c060a-c79b-4163-80be-4ab78ea5b17f",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "url": "http://43.203.242.117:8080/api/v1/customers",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        0,
+        400
+      ],
+      "id": "01f46493-68eb-4beb-903b-20c46004b004",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"version\": \"2.0\",\n  \"template\": {\n    \"outputs\": [\n      {\n        \"simpleText\": {\n          \"text\": \"안녕하세요! 문의 감사합니다. 사장님 별도 확인 후에 응답 다시 도와드리겠습니다~^^\"\n        }\n      }\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        688,
+        560
+      ],
+      "id": "2be124e7-114d-4823-ac87-95c73da88366",
+      "name": "Exception node"
+    },
+    {
+      "parameters": {
+        "jsCode": "const slots = $('PolicyEngine Code').first().json.slots;\nconst depositAmount = $('PolicyEngine Code').first().json.deposit_amount;\nconst bookingId = $('Create_Booking').first().json.data.id;\n\nconst checkoutUrl = `http://43.203.242.117:8080/payment?` +\n  `orderId=booking_${bookingId}` +\n  `&amount=${depositAmount}` +\n  `&orderName=${encodeURIComponent(slots.service_name + ' 예약금')}` +\n  `&customerName=${encodeURIComponent(slots.name)}`;\n\nreturn [{json: {\n  version: \"2.0\",\n  template: {\n    outputs: [{\n      simpleText: {\n        text: `💅 예약이 접수되었습니다!\\n\\n📅 날짜: ${slots.reserve_date}\\n⏰ 시간: ${slots.reserve_time}\\n💅 시술: ${slots.service_name}\\n👤 이름: ${slots.name}\\n\\n💳 아래 링크에서 예약금(${depositAmount.toLocaleString()}원)을 결제해주세요.\\n\\n👉 ${checkoutUrl}\\n\\n✅ 결제 완료 시 '결제완료'를 알려주세요.`\n      }\n    }]\n  }\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2528,
+        -144
+      ],
+      "id": "4b2100a2-171c-4c14-81f5-bc0cb3774ae0",
+      "name": "Send_Link_Response"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=http://43.203.242.117:8080/api/v1/payments/{{ $('Check_Payment').item.json.orderId.replace('booking_', '') }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"amount\": {{ $('Check_Payment').item.json.paidAmount }},\n  \"payment_status\": \"PAID\",\n  \"payment_key\": \"{{ $('Check_Payment').item.json.paymentKey }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2912,
+        752
+      ],
+      "id": "dbb30364-5d1f-47cd-a489-f8e90bb97131",
+      "name": "Update_Payment"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4fedfcc6-23b3-41f6-a16c-1fa3f81a0ae0",
+              "leftValue": "={{ $json.isSuccess }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2672,
+        768
+      ],
+      "id": "a4c0cad5-8145-49ab-9e71-86de14a8840e",
+      "name": "If_Status"
+    },
+    {
+      "parameters": {
+        "method": "DELETE",
+        "url": "=http://43.203.242.117:8080/api/v1/bookings/{{ $('Check_Payment').item.json.orderId.replace('booking_', '') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2912,
+        928
+      ],
+      "id": "40dd8e38-a335-4272-93e6-9be079f40802",
+      "name": "Cancel_Booking"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.upstage.ai/v1/document-digitization",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "document",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "ocr",
+              "value": "force"
+            },
+            {
+              "name": "model",
+              "value": "document-parse"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 60000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1232,
+        -880
+      ],
+      "id": "5885a3b3-979c-47fa-b1fd-c2bf6508b47c",
+      "name": "Parse_Document",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "HH0ZNAs5KuLk37pW",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/NailAgent/n8n/main/image/menu.jpeg",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          },
+          "timeout": 10000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1056,
+        -880
+      ],
+      "id": "c991a6a2-020c-4332-a8ef-a778c25387c6",
+      "name": "Download_Image"
+    },
+    {
+      "parameters": {
+        "jsCode": "let text;\ntry {\n  const raw = $input.item.json.output || $input.item.json.text || '';\n  const jsonMatch = raw.match(/\\{[\\s\\S]*\\}/);\n  const parsed = jsonMatch ? JSON.parse(jsonMatch[0]) : { text: raw };\n  text = parsed.text || '';\n} catch(e) {\n  text = $input.item.json.text || '죄송합니다, 잠시 후 다시 시도해주세요.';\n}\n\nreturn [{json: {\n  version: \"2.0\",\n  template: {\n    outputs: [{\n      simpleText: { text }\n    }]\n  }\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2112,
+        -736
+      ],
+      "id": "faf260a0-53f6-47bf-b0e2-cbc9b0e497eb",
+      "name": "Inquiry_Response_Format"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "solar-pro",
+          "mode": "list",
+          "cachedResultName": "solar-pro"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        80,
+        256
+      ],
+      "id": "51849ce4-8f13-4afc-838f-0ae5622ee943",
+      "name": "model=solar-pro",
+      "credentials": {
+        "openAiApi": {
+          "id": "SYIyKvhSyBDm7zTR",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=오늘 날짜: {{ $json.today }}\n\n{{ $json.utterance }}",
+        "options": {
+          "systemMessage": "### CRITICAL RULES\n- NEVER guess, assume, or infer slot values that are not explicitly mentioned by the customer.\n- If a slot value is not clearly stated, set it to null and add to missing_fields.\n- Do NOT fill in default values (e.g., do not assume 12:00 if no time is given).\n- Only extract what the customer explicitly said.\n\nIMPORTANT: Do NOT use any tools. Output the JSON directly without ANY explanation or text before/after the JSON. Your entire response must be ONLY the JSON object, nothing else.\n\nDo NOT wrap your response in any outer object like {\"output\": ...}. Output the JSON directly at the root level.\n\n### ROLE\nYou are an Intake Agent for a nail shop booking system.\nYour job is to classify the customer's message into exactly one of the following intents, and extract booking slots.\nToday's date is {{ $now.toFormat('yyyy-MM-dd') }}.\n\n### ALLOWED INTENTS\nUse only one of:\n1. greeting\n2. booking\n3. inquiry\n4. change\n5. cancel\n6. payment\n7. unknown\n\n### INTENT DEFINITIONS\n1. booking: The customer wants to make a new reservation.\n    Important: \"예약 문의\", \"예약 문의하고 싶어요\", \"예약 가능할까요\",\n    \"예약하고 싶어요\", \"예약 잡고 싶어요\", and \"애약 문의\"\n    must be classified as booking, not inquiry.\n    Even if the message contains the Korean word \"문의\", classify it as booking when the customer is asking about making a reservation.\n\n2. inquiry: General questions only, without a reservation request.\n    Examples: price, business hours, location, parking, available services.\n    Important: Messages containing \"문의\" that are NOT about making a reservation\n    must be classified as inquiry, not booking.\n    - \"영업시간 문의드립니다\" → inquiry\n    - \"가격 문의드립니다\" → inquiry\n    - \"영업시간이 어떻게 되나요?\" → inquiry\n    - \"가격이 얼마예요?\" → inquiry\n    Keywords that indicate inquiry: 영업시간, 가격, 위치, 시술 종류, 이벤트\n\n3. change: The customer wants to change an existing reservation.\n4. cancel: The customer wants to cancel an existing reservation.\n5. payment: The customer talks about deposit, payment, transfer, refund, or payment confirmation.\n6. greeting: The customer is only greeting.\n7. unknown: Use unknown when the message does not clearly match booking, inquiry, change, cancel, payment, or greeting.\n    Important:\n    Do NOT classify unclear messages as inquiry.\n    Do NOT guess the customer's intent.\n    If there is no clear evidence for booking, inquiry, change, cancel, payment, or greeting, return unknown.\n\n### SLOT EXTRACTION\nFor 'booking' intent, extract:\n- name: Customer's name.\n- phone_num: Phone number. Standardize to 010-XXXX-XXXX.\n- off_removal: True if gel removal is needed, False if not.\n- reserve_date: Date in YYYY-MM-DD. Interpret relative dates using Current Date.\n- reserve_time: Time in HH:MM.\n- service_code: One of [GEL_BASIC, GEL_NAIL, PEDICURE].\n- past_visit: True if visited before, False if first visit.\n\nFor 'change' intent, extract:\n- name: Customer's name if mentioned. Leave null if not mentioned.\n- reserve_date: New date in YYYY-MM-DD if mentioned. Leave null if not mentioned.\n- reserve_time: New time in HH:MM if mentioned. Leave null if not mentioned.\n- service_code: New service code if mentioned. Leave null if not mentioned.\n- off_removal: New gel removal preference if mentioned. Leave null if not mentioned.\n\nFor 'cancel' intent, extract:\n- name: Customer's name if mentioned. Leave null if not mentioned.\n\n### NORMALIZATION RULES\n- 젤네일, 젤 네일, 젤 -> GEL_NAIL\n- 기본네일, 기본 네일, 케어, 손톱 케어, 손톱케어 -> GEL_BASIC\n- 페디, 페디큐어 -> PEDICURE\n\n### TIME NORMALIZATION\n- \"N시\" -> \"N:00\" (예: 14시 -> 14:00, 오후 2시 -> 14:00)\n- \"N시 M분\" -> \"N:MM\" (예: 2시 30분 -> 14:30)\n- 오전/오후 변환 적용\n\n### REQUIRED FIELDS FOR BOOKING\nname, phone_num, off_removal, reserve_date, reserve_time, service_code, past_visit\n\n### OUTPUT BEHAVIOR\nFor 'booking' intent:\n- Extract all slots. Add missing required fields to missing_fields.\n- Set need_followup to True if any required field is missing.\n- Write followup_question politely in Korean.\n\nFor 'change' intent:\n- Extract name and any new slot fields if mentioned.\n- missing_fields is always empty [].\n- followup_question is always null.\n- need_followup is always false.\n- response is always \"\".\n\nFor 'cancel' intent:\n- Extract name if mentioned.\n- missing_fields is always empty [].\n- followup_question is always null.\n- need_followup is always false.\n- response is always \"\".\n\nFor 'greeting', 'inquiry', 'payment', 'unknown':\n- Do not extract slots. missing_fields is always empty [].\n- Write response in Korean.\n\nHandle typos, spacing errors, and informal Korean gracefully.\n\n### FEW-SHOT EXAMPLES\n- \"안녕하세요\" -> intent: greeting\n- \"저기요\" -> intent: greeting\n- \"예약 문의\" -> intent: booking\n- \"애약 문의\" -> intent: booking\n- \"영업시간 문의드립니다\" -> intent: inquiry\n- \"영업시간이 어떻게 되나요?\" -> intent: inquiry\n- \"오늘 몇시까지 해요?\" -> intent: inquiry\n- \"가격이 어떻게 되나요?\" -> intent: inquiry\n- \"젤네일 얼마예요?\" -> intent: inquiry\n- \"이벤트 있나요?\" -> intent: inquiry\n- \"주차 가능한가요?\" -> intent: inquiry\n- \"어디 있어요?\" -> intent: inquiry\n- \"예약금 보내면 되나요?\" -> intent: payment\n- \"입금했어요\" -> intent: payment\n\n- \"내일 예약을 모레 3시로 바꿔주세요. 홍길동이에요.\"\n  -> intent: change, name: 홍길동, reserve_date: 모레날짜, reserve_time: 15:00\n\n- \"예약 시간 바꾸고 싶어요\"\n  -> intent: change, name: null, reserve_date: null, reserve_time: null\n\n- \"예약 취소하고 싶어요. 김민지입니다.\"\n  -> intent: cancel, name: 김민지\n\n- \"예약 취소하고 싶어요\"\n  -> intent: cancel, name: null\n\n- \"내일 오후 3시 홍길동 010-1111-2222 젤네일 예약요. 제거는 없어요. 처음 가요.\"\n  -> intent: booking, name: 홍길동, phone_num: 010-1111-2222, off_removal: false, reserve_date: 내일날짜, reserve_time: 15:00, service_code: GEL_NAIL, past_visit: false\n\n### OUTPUT FORMAT\n반드시 아래 JSON을 직접 출력하세요. \"output\" 키로 감싸지 마세요:\n\n{\n  \"intent\": \"\",\n  \"slots\": {\n    \"name\": null,\n    \"phone_num\": null,\n    \"reserve_date\": null,\n    \"reserve_time\": null,\n    \"service_code\": null,\n    \"off_removal\": null,\n    \"past_visit\": null\n  },\n  \"missing_fields\": [],\n  \"need_followup\": false,\n  \"followup_question\": null,\n  \"response\": \"\"\n}\n\n- greeting/inquiry/payment/unknown → response에 한국어 답변 작성, 나머지 필드 기본값 유지\n- booking → 슬롯 추출, 누락 필드는 missing_fields에 추가, followup_question 작성\n- change → name과 변경할 슬롯 추출 (언급된 것만), missing_fields/followup_question/response 모두 기본값\n- cancel → name 추출 (언급된 경우만), missing_fields/followup_question/response 모두 기본값"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        176,
+        64
+      ],
+      "id": "49e4819e-4c13-45b1-96dd-87b0e6cdfc34",
+      "name": "Intake Agent"
+    },
+    {
+      "parameters": {
+        "jsCode": "const elements = $input.item.json.elements || [];\n\nconst extractedText = elements\n  .map(el => el.content?.html || el.content?.text || '')\n  .filter(text => text.length > 0)\n  .join('\\n');\n\nreturn [{json: {\n  parsed_text: extractedText\n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1408,
+        -880
+      ],
+      "id": "2fd1aa81-7c49-4e3a-ad6a-e09cb897708f",
+      "name": "Extract_Text"
+    },
+    {
+      "parameters": {
+        "url": "http://43.203.242.117:8080/api/v1/bookings/1/exists",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        3120,
+        752
+      ],
+      "id": "1f967a67-9243-4636-a6a3-e36c3d6fc5ec",
+      "name": "Get_Calendar_Result"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8d2c39c3-8539-4525-96cc-8e67ac859df3",
+              "leftValue": "={{ $json.data.exists }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3296,
+        752
+      ],
+      "id": "ce64b19a-c101-49cb-98b3-fe9664407b03",
+      "name": "If_Calendar"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"version\": \"2.0\",\n  \"template\": {\n    \"outputs\": [\n      {\n        \"simpleText\": {\n          \"text\": \"✅ 예약이 완료되었습니다!\\n캘린더에도 일정이 추가되었어요 :)\"\n        }\n      }\n    ]\n  }\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3504,
+        656
+      ],
+      "id": "90185623-c35e-431a-a16b-510f43e5d02f",
+      "name": "Respond to Webhook (True - 성공)"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"version\": \"2.0\",\n  \"template\": {\n    \"outputs\": [\n      {\n        \"simpleText\": {\n          \"text\": \"✅ 예약금 결제가 완료되었습니다!\\n⚠️하지만, 구글 캘린더 예약 등록에 실패했어요.(관리자 확인 필요)\"\n        }\n      }\n    ]\n  }\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        3504,
+        848
+      ],
+      "id": "4337d30f-9025-47a8-8439-8036b21d7df2",
+      "name": "Respond to Webhook (False - 실패)"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://43.203.242.117:8080/api/v1/sse/notify",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"waiting\": {{ $json.waiting }},\n  \"customer_name\": \"{{ $json.customer_name }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        2304,
+        -1040
+      ],
+      "id": "89a3db0b-e3d2-492a-bd92-6c4274cf518f",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const kakaoProps = $('Kakao_Webhook').item.json.body.userRequest.user.properties;\nconst prepareData = $('Prepare_Input').first().json;\n\n// 우선순위: DB에 저장된 이름 → 카카오 닉네임 → 기본값\nconst customerName = prepareData.name \n  || kakaoProps.nickname \n  || '고객님';\n\nreturn [{json: { \n  waiting: true, \n  customer_name: customerName \n}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2112,
+        -1040
+      ],
+      "id": "938bfac0-dfb8-4377-aeff-da3b83ed5b4e",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "const bookings = $json.data?.bookings || [];\nconst customerName = $('Prepare_Input').first().json.name;\n\n// 이름으로 필터 + 가장 최근 예약의 paymentStatus 확인\nconst myBooking = bookings\n  .filter(b => b.name === customerName)\n  .sort((a, b) => new Date(b.reserveDate) - new Date(a.reserveDate))[0];\n\nconst isPaid = myBooking?.payment_status === 'PAID';\n\nreturn [{json: { isPaid, booking: myBooking || null }}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        416
+      ],
+      "id": "9a1f51eb-37dc-4ca1-a46f-fbad13fbf063",
+      "name": "Check_Payment_Status"
+    },
+    {
+      "parameters": {
+        "url": "http://43.203.242.117:8080/api/v1/bookings",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        720,
+        384
+      ],
+      "id": "2b2c0d88-1f7e-4950-83ad-22e6ff1bd06e",
+      "name": "Get_My_Bookings"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"simpleText\":{\"text\":\"✅ 결제가 확인되었습니다!\\n예약이 완료되었어요 :)\"}}]}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1216,
+        448
+      ],
+      "id": "4d083ec2-1f6c-46c4-9db9-99f7293dfc73",
+      "name": "Respond to Webhook (true)"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"simpleText\":{\"text\":\"⚠️ 아직 결제가 확인되지 않았습니다.\\n잠시 후 다시 시도해주세요.\"}}]}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1216,
+        640
+      ],
+      "id": "c8142863-a460-4e3d-a83b-71c291534380",
+      "name": "Respond to Webhook (false)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "18eddc65-f549-4f22-b887-3c883451713a",
+              "leftValue": "={{ $json.isPaid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1024,
+        464
+      ],
+      "id": "80d16c05-2ac2-4283-aa03-aba0aca5e04d",
+      "name": "If_Payment_Confirmed"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "186b0c45-9e89-41d8-b4d7-af497ebb6246",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -672,
+        48
+      ],
+      "id": "5d6ac673-59bc-4649-8c67-2baed2da8bf2",
+      "name": "Kakao_Webhook",
+      "webhookId": "186b0c45-9e89-41d8-b4d7-af497ebb6246"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "9f4547a7-f487-433a-9524-245ec382e5ed",
+              "leftValue": "={{ $json.body.flow.trigger.type }}",
+              "rightValue": "IMAGE_UPLOAD",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -464,
+        48
+      ],
+      "id": "034f988d-bcbb-46bc-af18-4612dbff5ce1",
+      "name": "Is_Image"
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Kakao_Webhook').item.json.body.userRequest.utterance }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -240,
+        -144
+      ],
+      "id": "77c6927e-5f1d-4538-80b2-05b570d48c49",
+      "name": "Download_Customer_Image"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=http://43.203.242.117:8080/api/v1/bookings/image?plusfriend_user_key={{ $('Kakao_Webhook').item.json.body.userRequest.user.properties.plusfriendUserKey }}",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "image",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -32,
+        -144
+      ],
+      "id": "6b60aadc-1fd1-4f15-b7ee-9d634c657566",
+      "name": "Upload_Image"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"version\":\"2.0\",\"template\":{\"outputs\":[{\"simpleText\":{\"text\":\"📸 사진이 업로드되었습니다!\"}}]}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        176,
+        -144
+      ],
+      "id": "7212e5ad-c76d-4f89-a89a-2ce3823d535a",
+      "name": "Respond to Webhook1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Intake Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WELCOME_MESSAGE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get_ShopInfo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse_Slots",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get_Bookings_CC",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get_Bookings_CC",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get_My_Bookings",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Exception node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WELCOME_MESSAGE": {
+      "main": [
+        []
+      ]
+    },
+    "Get_ShopInfo": {
+      "main": [
+        [
+          {
+            "node": "Download_Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inquiry_LLM": {
+      "main": [
+        [
+          {
+            "node": "Can_Answer_Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "solar-pro": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Inquiry_LLM",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Can_Answer_Check": {
+      "main": [
+        [
+          {
+            "node": "사장님_알림_응답",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Inquiry_Response_Format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "BOOKING_FORM_GUIDE",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get_ShopInfo_Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_Schedule": {
+      "main": [
+        [
+          {
+            "node": "PolicyEngine Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Booking_Valid_Check": {
+      "main": [
+        [
+          {
+            "node": "Create_Booking",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Booking_Fail_Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create_Booking": {
+      "main": [
+        [
+          {
+            "node": "Send_Link_Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Booking_Fail_Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PolicyEngine Code": {
+      "main": [
+        [
+          {
+            "node": "Booking_Valid_Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse_Slots": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_ShopInfo_Booking": {
+      "main": [
+        [
+          {
+            "node": "Get_Schedule",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Prepare_Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare_Input": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Intake Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_Bookings_CC": {
+      "main": [
+        [
+          {
+            "node": "Find_My_Reservation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find_My_Reservation": {
+      "main": [
+        [
+          {
+            "node": "If_Found",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If_Found": {
+      "main": [
+        [
+          {
+            "node": "Switch_CC",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AskInfo_CC_Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch_CC": {
+      "main": [
+        [
+          {
+            "node": "Get_ShopInfo_CC",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete_Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build_Patch": {
+      "main": [
+        [
+          {
+            "node": "Patch_Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_ShopInfo_CC": {
+      "main": [
+        [
+          {
+            "node": "Build_Patch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Patch_Booking": {
+      "main": [
+        [
+          {
+            "node": "Change_Success_Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete_Booking": {
+      "main": [
+        [
+          {
+            "node": "Cancel_Success_Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Change_Success_Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancel_Success_Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AskInfo_CC_Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Toss Webhook": {
+      "main": [
+        [
+          {
+            "node": "Verify_Signature",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verify_Signature": {
+      "main": [
+        [
+          {
+            "node": "If_Valid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If_Valid": {
+      "main": [
+        [
+          {
+            "node": "Get_Payment",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reject_Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_Payment": {
+      "main": [
+        [
+          {
+            "node": "Check_Payment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check_Payment": {
+      "main": [
+        [
+          {
+            "node": "If_Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send_Link_Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If_Status": {
+      "main": [
+        [
+          {
+            "node": "Update_Payment",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cancel_Booking",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update_Payment": {
+      "main": [
+        [
+          {
+            "node": "Get_Calendar_Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancel_Booking": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse_Document": {
+      "main": [
+        [
+          {
+            "node": "Extract_Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download_Image": {
+      "main": [
+        [
+          {
+            "node": "Parse_Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Inquiry_Response_Format": {
+      "main": [
+        [
+          {
+            "node": "Inquiry_응답",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "model=solar-pro": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Intake Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Intake Agent": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract_Text": {
+      "main": [
+        [
+          {
+            "node": "Inquiry_LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_Calendar_Result": {
+      "main": [
+        [
+          {
+            "node": "If_Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If_Calendar": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook (True - 성공)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook (False - 실패)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get_My_Bookings": {
+      "main": [
+        [
+          {
+            "node": "Check_Payment_Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check_Payment_Status": {
+      "main": [
+        [
+          {
+            "node": "If_Payment_Confirmed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If_Payment_Confirmed": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook (true)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook (false)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kakao_Webhook": {
+      "main": [
+        [
+          {
+            "node": "Is_Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is_Image": {
+      "main": [
+        [
+          {
+            "node": "Download_Customer_Image",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download_Customer_Image": {
+      "main": [
+        [
+          {
+            "node": "Upload_Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload_Image": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "60a804d8-dc8f-4f68-8d0f-993874950845",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d500155c67780d83bcad935dce577e373395d2990d6ce2e842eda694e40c159a"
+  },
+  "id": "8QcJ0hGIHScKPnSX",
+  "tags": []
+}
